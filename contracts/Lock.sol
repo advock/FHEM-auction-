@@ -20,10 +20,7 @@ contract NFTauction {
 
     mapping(address => mapping(uint256 => address[])) public bids;
 
-
     mapping(address => mapping(uint256 => address)) public winner;
-
-
 
     // mft add => tokenid = > all biders
 
@@ -62,24 +59,20 @@ contract NFTauction {
 
     function getWinner(address nftAddress, uint256 tokenId) public {
         euint32 maxBid;
-        address maxBider
+        address maxBider;
 
         address[] storage orders = bids[nftAddress][tokenId];
 
         for (uint256 i = 0; i < orders.length; i++) {
             euint32 bitAmount = Bid[orders[i]][nftAddress][tokenId];
 
-            if (TFHE.gt(maxBid, euint32)){
-                maxBider = orders[i]
+            bool result = TFHE.decrypt(TFHE.gt(maxBid, bitAmount));
 
+            if (result) {
+                maxBider = orders[i];
             }
-            
         }
 
         winner[nftAddress][tokenId] = maxBider;
-
-
-
-
     }
 }
