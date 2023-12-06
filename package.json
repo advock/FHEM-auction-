@@ -1,0 +1,12 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.1"
+  },
+  "dependencies": {
+    "fhevm": "github:zama-ai/fhevm",
+    "install": "^0.13.0",
+    "npm": "^10.2.4"
+  }
+}
